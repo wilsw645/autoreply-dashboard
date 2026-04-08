@@ -9,6 +9,7 @@
       --bg: #0f0f13;
       --surface: #1a1a24;
       --surface2: #22222f;
+      --surface3: #2a2a3a;
       --border: #2e2e3f;
       --accent: #7c6af7;
       --accent2: #e05cff;
@@ -27,10 +28,10 @@
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      padding: 0 0 40px;
+      padding: 0 0 48px;
     }
 
-    /* Header */
+    /* ── Header ── */
     .header {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
       padding: 32px 20px 28px;
@@ -46,24 +47,11 @@
       background: radial-gradient(ellipse at 50% 0%, rgba(124,106,247,0.18) 0%, transparent 70%);
       pointer-events: none;
     }
-    .header-emoji {
-      font-size: 48px;
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-    .header h1 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.02em;
-      margin-bottom: 4px;
-    }
-    .header p {
-      font-size: 13px;
-      color: var(--muted);
-    }
+    .header-emoji { font-size: 48px; line-height: 1; margin-bottom: 10px; }
+    .header h1 { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.02em; margin-bottom: 4px; }
+    .header p { font-size: 13px; color: var(--muted); }
 
-    /* Stats cards */
+    /* ── Stat cards ── */
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -79,9 +67,7 @@
       padding: 16px;
       text-align: center;
     }
-    .stat-card.full-width {
-      grid-column: 1 / -1;
-    }
+    .stat-card.full-width { grid-column: 1 / -1; }
     .stat-value {
       font-size: 36px;
       font-weight: 800;
@@ -92,14 +78,9 @@
       line-height: 1.1;
     }
     .stat-value.small { font-size: 28px; }
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 4px;
-      font-weight: 500;
-    }
+    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 500; }
 
-    /* Section title */
+    /* ── Section title ── */
     .section-title {
       font-size: 13px;
       font-weight: 600;
@@ -111,7 +92,7 @@
       margin: 0 auto;
     }
 
-    /* Leaderboard */
+    /* ── Leaderboard ── */
     .leaderboard {
       max-width: 500px;
       margin: 0 auto;
@@ -121,98 +102,107 @@
       gap: 8px;
     }
 
+    /* ── Entry card ── */
     .entry {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 14px 16px;
+      overflow: hidden;
       transition: background 0.15s;
     }
-    .entry:active { background: var(--surface2); }
+    .entry.rank-1 { border-color: rgba(255,209,102,0.4); background: rgba(255,209,102,0.06); }
+    .entry.rank-2 { border-color: rgba(192,192,208,0.3); background: rgba(192,192,208,0.04); }
+    .entry.rank-3 { border-color: rgba(205,127,50,0.3);  background: rgba(205,127,50,0.04); }
 
-    .entry.rank-1 { border-color: rgba(255, 209, 102, 0.4); background: rgba(255,209,102,0.06); }
-    .entry.rank-2 { border-color: rgba(192, 192, 208, 0.3); background: rgba(192,192,208,0.04); }
-    .entry.rank-3 { border-color: rgba(205, 127, 50, 0.3); background: rgba(205,127,50,0.04); }
+    /* Clickable summary row */
+    .entry-summary {
+      padding: 14px 16px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .entry-summary:active { background: rgba(255,255,255,0.04); }
 
     .entry-top {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .rank-badge {
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800;
       flex-shrink: 0;
       background: var(--surface2);
       color: var(--muted);
     }
-    .rank-1 .rank-badge { background: rgba(255,209,102,0.2); color: var(--gold); font-size: 18px; }
-    .rank-2 .rank-badge { background: rgba(192,192,208,0.15); color: var(--silver); font-size: 18px; }
+    .rank-1 .rank-badge { background: rgba(255,209,102,0.2); color: var(--gold);   font-size: 18px; }
+    .rank-2 .rank-badge { background: rgba(192,192,208,0.15);color: var(--silver); font-size: 18px; }
     .rank-3 .rank-badge { background: rgba(205,127,50,0.15); color: var(--bronze); font-size: 18px; }
 
-    .entry-info {
-      flex: 1;
-      min-width: 0;
-    }
+    .entry-info { flex: 1; min-width: 0; }
+
     .username {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px; font-weight: 700;
       color: var(--text);
-      white-space: nowrap;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* Aliases */
+    .aliases {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 5px;
+    }
+    .alias-tag {
+      font-size: 10px;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px 6px;
+      max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 100%;
+      white-space: nowrap;
     }
 
     .entry-numbers {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-top: 2px;
+      display: flex; align-items: baseline; gap: 6px;
+      margin-top: 4px;
     }
-    .count {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text);
-    }
+    .count { font-size: 18px; font-weight: 700; color: var(--text); }
     .rank-1 .count { color: var(--gold); }
     .rank-2 .count { color: var(--silver); }
     .rank-3 .count { color: var(--bronze); }
+    .count-label { font-size: 12px; color: var(--muted); }
 
-    .count-label {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
+    .right-col { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
     .pct-badge {
-      flex-shrink: 0;
       background: var(--surface2);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 4px 10px;
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 13px; font-weight: 700;
       color: var(--accent);
     }
-    .rank-1 .pct-badge { color: var(--gold); border-color: rgba(255,209,102,0.3); background: rgba(255,209,102,0.08); }
-    .rank-2 .pct-badge { color: var(--silver); border-color: rgba(192,192,208,0.2); }
-    .rank-3 .pct-badge { color: var(--bronze); border-color: rgba(205,127,50,0.2); }
+    .rank-1 .pct-badge { color: var(--gold);   border-color: rgba(255,209,102,0.3); background: rgba(255,209,102,0.08); }
+    .rank-2 .pct-badge { color: var(--silver);  border-color: rgba(192,192,208,0.2); }
+    .rank-3 .pct-badge { color: var(--bronze);  border-color: rgba(205,127,50,0.2); }
+
+    .chevron {
+      font-size: 11px;
+      color: var(--muted);
+      transition: transform 0.25s;
+    }
+    .entry.open .chevron { transform: rotate(180deg); }
 
     /* Progress bar */
-    .bar-track {
-      height: 6px;
-      background: var(--bar-bg);
-      border-radius: 99px;
-      overflow: hidden;
-    }
+    .bar-track { height: 6px; background: var(--bar-bg); border-radius: 99px; overflow: hidden; margin-top: 8px; }
     .bar-fill {
       height: 100%;
       border-radius: 99px;
@@ -223,20 +213,76 @@
     .rank-2 .bar-fill { background: linear-gradient(90deg, #a0a0c0, var(--silver)); }
     .rank-3 .bar-fill { background: linear-gradient(90deg, #a0522d, var(--bronze)); }
 
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 32px 16px 0;
-      font-size: 12px;
+    /* ── Keyword panel ── */
+    .keyword-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      border-top: 0px solid var(--border);
+    }
+    .entry.open .keyword-panel {
+      max-height: 600px;
+      border-top-width: 1px;
+    }
+    .keyword-inner {
+      padding: 12px 14px 14px;
+      background: var(--surface2);
+    }
+    .kw-title {
+      font-size: 11px;
+      font-weight: 600;
       color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .kw-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .kw-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kw-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      min-width: 0;
+      flex-shrink: 0;
+      max-width: 45%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .kw-bar-track {
+      flex: 1;
+      height: 5px;
+      background: var(--bar-bg);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .kw-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .kw-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      flex-shrink: 0;
+      min-width: 28px;
+      text-align: right;
     }
 
-    /* Loading */
-    #loading {
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--muted);
-    }
+    /* ── Footer ── */
+    .footer { text-align: center; padding: 32px 16px 0; font-size: 12px; color: var(--muted); }
+
+    /* ── Loading ── */
+    #loading { text-align: center; padding: 60px 20px; color: var(--muted); }
     #content { display: none; }
   </style>
 </head>
@@ -266,73 +312,111 @@
     </div>
   </div>
 
-  <div class="section-title">排行榜</div>
-
+  <div class="section-title">排行榜 · 點開看關鍵字</div>
   <div class="leaderboard" id="leaderboard"></div>
-
   <div class="footer" id="footer"></div>
 </div>
 
 <script>
   const MEDAL = ['🥇','🥈','🥉'];
 
-  async function load() {
-    const res = await fetch('stats.json');
-    const data = await res.json();
+  function esc(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
 
-    document.getElementById('stat-total').textContent = data.total_triggers.toLocaleString();
-    document.getElementById('stat-users').textContent = data.leaderboard.length;
-    document.getElementById('stat-top-pct').textContent = data.leaderboard[0].percentage + '%';
+  function buildEntry(entry, maxCount) {
+    const rank = entry.rank;
+    const rankClass = rank <= 3 ? `rank-${rank}` : '';
+    const rankDisplay = rank <= 3 ? MEDAL[rank-1] : rank;
+    const barWidth = (entry.count / maxCount * 100).toFixed(1);
 
-    const maxCount = data.leaderboard[0].count;
-    const lb = document.getElementById('leaderboard');
+    // Aliases: show only names different from canonical
+    const otherAliases = entry.aliases.filter(a => a !== entry.username);
+    const aliasHtml = otherAliases.length
+      ? `<div class="aliases">${otherAliases.map(a => `<span class="alias-tag">${esc(a)}</span>`).join('')}</div>`
+      : '';
 
-    data.leaderboard.forEach((entry, i) => {
-      const rank = i + 1;
-      const rankClass = rank <= 3 ? `rank-${rank}` : '';
-      const rankDisplay = rank <= 3 ? MEDAL[i] : rank;
-      const barWidth = (entry.count / maxCount * 100).toFixed(1);
+    // Keywords panel
+    const maxKwCount = entry.keywords.length ? entry.keywords[0].count : 1;
+    // Show top 15 keywords
+    const topKws = entry.keywords.slice(0, 15);
+    const kwRowsHtml = topKws.map(({kw, count}) => {
+      const w = (count / maxKwCount * 100).toFixed(1);
+      return `
+        <div class="kw-row">
+          <span class="kw-name">${esc(kw)}</span>
+          <div class="kw-bar-track"><div class="kw-bar-fill" style="width:${w}%"></div></div>
+          <span class="kw-count">${count}</span>
+        </div>`;
+    }).join('');
 
-      const el = document.createElement('div');
-      el.className = `entry ${rankClass}`;
-      el.innerHTML = `
+    const el = document.createElement('div');
+    el.className = `entry ${rankClass}`;
+    el.innerHTML = `
+      <div class="entry-summary">
         <div class="entry-top">
           <div class="rank-badge">${rankDisplay}</div>
           <div class="entry-info">
-            <div class="username">${escHtml(entry.username)}</div>
+            <div class="username">${esc(entry.username)}</div>
+            ${aliasHtml}
             <div class="entry-numbers">
               <span class="count">${entry.count.toLocaleString()}</span>
               <span class="count-label">次</span>
             </div>
           </div>
-          <div class="pct-badge">${entry.percentage}%</div>
+          <div class="right-col">
+            <div class="pct-badge">${entry.percentage}%</div>
+            <span class="chevron">▼</span>
+          </div>
         </div>
         <div class="bar-track">
-          <div class="bar-fill" style="width: 0%" data-width="${barWidth}%"></div>
+          <div class="bar-fill" style="width:0%" data-width="${barWidth}%"></div>
         </div>
-      `;
-      lb.appendChild(el);
+      </div>
+      <div class="keyword-panel">
+        <div class="keyword-inner">
+          <div class="kw-title">常用關鍵字（共 ${entry.keywords.length} 種）</div>
+          <div class="kw-list">${kwRowsHtml}</div>
+        </div>
+      </div>
+    `;
+
+    el.querySelector('.entry-summary').addEventListener('click', () => {
+      el.classList.toggle('open');
+    });
+
+    return el;
+  }
+
+  async function load() {
+    const res = await fetch('stats.json');
+    const data = await res.json();
+
+    document.getElementById('stat-total').textContent = data.total_triggers.toLocaleString();
+    document.getElementById('stat-users').textContent = data.total_users;
+    document.getElementById('stat-top-pct').textContent = data.leaderboard[0].percentage + '%';
+
+    const maxCount = data.leaderboard[0].count;
+    const lb = document.getElementById('leaderboard');
+
+    data.leaderboard.forEach(entry => {
+      lb.appendChild(buildEntry(entry, maxCount));
     });
 
     document.getElementById('loading').style.display = 'none';
     document.getElementById('content').style.display = 'block';
 
-    // Animate bars
+    // Animate bars after paint
     requestAnimationFrame(() => {
       document.querySelectorAll('.bar-fill').forEach(bar => {
         bar.style.width = bar.dataset.width;
       });
     });
 
-    // Footer: show generation time from stats file if available
     const updated = new Date().toLocaleDateString('zh-TW', {
       year: 'numeric', month: 'long', day: 'numeric'
     });
     document.getElementById('footer').textContent = `資料更新：${updated}`;
-  }
-
-  function escHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
   load().catch(err => {
