@@ -282,6 +282,29 @@
     .kw-rank-2 .kw-global-fill { background: linear-gradient(90deg, #a0a0c0, var(--silver)); }
     .kw-rank-3 .kw-global-fill { background: linear-gradient(90deg, #a0522d, var(--bronze)); }
 
+    /* Reply bubble */
+    .kw-reply {
+      margin-top: 9px;
+      background: var(--surface3);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .kw-rank-1 .kw-reply { border-left-color: var(--gold); }
+    .kw-rank-2 .kw-reply { border-left-color: var(--silver); }
+    .kw-rank-3 .kw-reply { border-left-color: var(--bronze); }
+    .kw-reply-label {
+      font-size: 10px; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 3px;
+    }
+    .kw-reply-text { color: var(--text); }
+
     .kw-hidden { display: none; }
 
     /* ── Footer ── */
@@ -413,6 +436,14 @@
     const rc = rank <= 3 ? `kw-rank-${rank}` : '';
     const rd = rank <= 3 ? MEDAL[rank-1] : rank;
     const bw = (entry.count / maxCount * 100).toFixed(1);
+
+    const replyHtml = entry.reply
+      ? `<div class="kw-reply">
+           <div class="kw-reply-label">🤖 Auto-reply 回覆</div>
+           <div class="kw-reply-text">${esc(entry.reply)}</div>
+         </div>`
+      : '';
+
     const el = document.createElement('div');
     el.className = `kw-entry ${rc}`;
     el.dataset.kw = entry.kw.toLowerCase();
@@ -427,7 +458,8 @@
       </div>
       <div class="kw-global-bar">
         <div class="kw-global-fill" style="width:0%" data-width="${bw}%"></div>
-      </div>`;
+      </div>
+      ${replyHtml}`;
     return el;
   }
 
