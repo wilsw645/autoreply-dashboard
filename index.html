@@ -20,21 +20,19 @@
       --muted: #888899;
       --bar-bg: #2e2e3f;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      padding: 0 0 48px;
+      padding-bottom: 48px;
     }
 
     /* ── Header ── */
     .header {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      padding: 32px 20px 28px;
+      padding: 28px 20px 24px;
       text-align: center;
       border-bottom: 1px solid var(--border);
       position: relative;
@@ -42,140 +40,128 @@
     }
     .header::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: radial-gradient(ellipse at 50% 0%, rgba(124,106,247,0.18) 0%, transparent 70%);
       pointer-events: none;
     }
-    .header-emoji { font-size: 48px; line-height: 1; margin-bottom: 10px; }
-    .header h1 { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 0.02em; margin-bottom: 4px; }
-    .header p { font-size: 13px; color: var(--muted); }
+    .header-emoji { font-size: 44px; line-height: 1; margin-bottom: 8px; }
+    .header h1 { font-size: 19px; font-weight: 700; color: #fff; letter-spacing: 0.02em; margin-bottom: 4px; }
+    .header p { font-size: 12px; color: var(--muted); }
 
     /* ── Stat cards ── */
     .stats-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 20px 16px 0;
+      gap: 10px;
+      padding: 16px 16px 0;
       max-width: 500px;
       margin: 0 auto;
     }
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
+      border-radius: 14px;
+      padding: 14px;
       text-align: center;
     }
     .stat-card.full-width { grid-column: 1 / -1; }
     .stat-value {
-      font-size: 36px;
-      font-weight: 800;
+      font-size: 34px; font-weight: 800;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1.1;
     }
-    .stat-value.small { font-size: 28px; }
-    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 500; }
+    .stat-value.small { font-size: 26px; }
+    .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; font-weight: 500; }
+
+    /* ── Tabs ── */
+    .tab-bar {
+      display: flex;
+      max-width: 500px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+      gap: 8px;
+    }
+    .tab-btn {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(124,106,247,0.2), rgba(224,92,255,0.15));
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* ── Tab panels ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
 
     /* ── Section title ── */
     .section-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 24px 16px 10px;
-      max-width: 500px;
-      margin: 0 auto;
+      font-size: 12px; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 16px 16px 10px;
+      max-width: 500px; margin: 0 auto;
     }
 
-    /* ── Leaderboard ── */
+    /* ── User leaderboard ── */
     .leaderboard {
-      max-width: 500px;
-      margin: 0 auto;
+      max-width: 500px; margin: 0 auto;
       padding: 0 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      display: flex; flex-direction: column; gap: 8px;
     }
 
-    /* ── Entry card ── */
     .entry {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
-      transition: background 0.15s;
     }
     .entry.rank-1 { border-color: rgba(255,209,102,0.4); background: rgba(255,209,102,0.06); }
     .entry.rank-2 { border-color: rgba(192,192,208,0.3); background: rgba(192,192,208,0.04); }
     .entry.rank-3 { border-color: rgba(205,127,50,0.3);  background: rgba(205,127,50,0.04); }
 
-    /* Clickable summary row */
     .entry-summary {
-      padding: 14px 16px;
+      padding: 13px 15px;
       cursor: pointer;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
-    .entry-summary:active { background: rgba(255,255,255,0.04); }
+    .entry-summary:active { background: rgba(255,255,255,0.03); }
 
-    .entry-top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 6px;
-    }
+    .entry-top { display: flex; align-items: center; gap: 11px; margin-bottom: 6px; }
 
     .rank-badge {
-      width: 32px; height: 32px;
-      border-radius: 10px;
+      width: 30px; height: 30px; border-radius: 9px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 800;
-      flex-shrink: 0;
-      background: var(--surface2);
-      color: var(--muted);
+      font-size: 13px; font-weight: 800; flex-shrink: 0;
+      background: var(--surface2); color: var(--muted);
     }
-    .rank-1 .rank-badge { background: rgba(255,209,102,0.2); color: var(--gold);   font-size: 18px; }
-    .rank-2 .rank-badge { background: rgba(192,192,208,0.15);color: var(--silver); font-size: 18px; }
-    .rank-3 .rank-badge { background: rgba(205,127,50,0.15); color: var(--bronze); font-size: 18px; }
+    .rank-1 .rank-badge { background: rgba(255,209,102,0.2); color: var(--gold);   font-size: 17px; }
+    .rank-2 .rank-badge { background: rgba(192,192,208,0.15);color: var(--silver); font-size: 17px; }
+    .rank-3 .rank-badge { background: rgba(205,127,50,0.15); color: var(--bronze); font-size: 17px; }
 
     .entry-info { flex: 1; min-width: 0; }
-
-    .username {
-      font-size: 15px; font-weight: 700;
-      color: var(--text);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-
-    /* Aliases */
-    .aliases {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 5px;
-    }
+    .username { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .aliases { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
     .alias-tag {
-      font-size: 10px;
-      color: var(--muted);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 2px 6px;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      font-size: 10px; color: var(--muted);
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 5px; padding: 1px 5px;
+      max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
-
-    .entry-numbers {
-      display: flex; align-items: baseline; gap: 6px;
-      margin-top: 4px;
-    }
-    .count { font-size: 18px; font-weight: 700; color: var(--text); }
+    .entry-numbers { display: flex; align-items: baseline; gap: 5px; margin-top: 3px; }
+    .count { font-size: 17px; font-weight: 700; }
     .rank-1 .count { color: var(--gold); }
     .rank-2 .count { color: var(--silver); }
     .rank-3 .count { color: var(--bronze); }
@@ -183,29 +169,19 @@
 
     .right-col { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
     .pct-badge {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 4px 10px;
-      font-size: 13px; font-weight: 700;
-      color: var(--accent);
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 7px; padding: 3px 9px;
+      font-size: 13px; font-weight: 700; color: var(--accent);
     }
     .rank-1 .pct-badge { color: var(--gold);   border-color: rgba(255,209,102,0.3); background: rgba(255,209,102,0.08); }
     .rank-2 .pct-badge { color: var(--silver);  border-color: rgba(192,192,208,0.2); }
     .rank-3 .pct-badge { color: var(--bronze);  border-color: rgba(205,127,50,0.2); }
-
-    .chevron {
-      font-size: 11px;
-      color: var(--muted);
-      transition: transform 0.25s;
-    }
+    .chevron { font-size: 10px; color: var(--muted); transition: transform 0.25s; }
     .entry.open .chevron { transform: rotate(180deg); }
 
-    /* Progress bar */
-    .bar-track { height: 6px; background: var(--bar-bg); border-radius: 99px; overflow: hidden; margin-top: 8px; }
+    .bar-track { height: 5px; background: var(--bar-bg); border-radius: 99px; overflow: hidden; margin-top: 7px; }
     .bar-fill {
-      height: 100%;
-      border-radius: 99px;
+      height: 100%; border-radius: 99px;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -213,73 +189,103 @@
     .rank-2 .bar-fill { background: linear-gradient(90deg, #a0a0c0, var(--silver)); }
     .rank-3 .bar-fill { background: linear-gradient(90deg, #a0522d, var(--bronze)); }
 
-    /* ── Keyword panel ── */
+    /* ── Keyword expand panel ── */
     .keyword-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
       border-top: 0px solid var(--border);
     }
-    .entry.open .keyword-panel {
-      max-height: 600px;
-      border-top-width: 1px;
-    }
-    .keyword-inner {
-      padding: 12px 14px 14px;
-      background: var(--surface2);
-    }
-    .kw-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
-    }
-    .kw-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .kw-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .entry.open .keyword-panel { max-height: 600px; border-top-width: 1px; }
+    .keyword-inner { padding: 12px 14px 14px; background: var(--surface2); }
+    .kw-title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .kw-list { display: flex; flex-direction: column; gap: 6px; }
+    .kw-row { display: flex; align-items: center; gap: 8px; }
     .kw-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      min-width: 0;
-      flex-shrink: 0;
-      max-width: 45%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      font-size: 13px; font-weight: 600; color: var(--text);
+      flex-shrink: 0; max-width: 45%;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
-    .kw-bar-track {
-      flex: 1;
-      height: 5px;
-      background: var(--bar-bg);
-      border-radius: 99px;
-      overflow: hidden;
-    }
-    .kw-bar-fill {
-      height: 100%;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-    }
-    .kw-count {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      flex-shrink: 0;
-      min-width: 28px;
-      text-align: right;
+    .kw-bar-track { flex: 1; height: 5px; background: var(--bar-bg); border-radius: 99px; overflow: hidden; }
+    .kw-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    .kw-count { font-size: 12px; font-weight: 600; color: var(--muted); flex-shrink: 0; min-width: 28px; text-align: right; }
+
+    /* ── Keyword leaderboard ── */
+    .kw-leaderboard {
+      max-width: 500px; margin: 0 auto;
+      padding: 0 16px;
+      display: flex; flex-direction: column; gap: 6px;
     }
 
+    /* Search bar */
+    .search-wrap { max-width: 500px; margin: 0 auto; padding: 0 16px 12px; }
+    .search-input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input::placeholder { color: var(--muted); }
+    .search-input:focus { border-color: var(--accent); }
+
+    .kw-entry {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 11px 14px;
+    }
+    .kw-entry.kw-rank-1 { border-color: rgba(255,209,102,0.4); background: rgba(255,209,102,0.06); }
+    .kw-entry.kw-rank-2 { border-color: rgba(192,192,208,0.3); background: rgba(192,192,208,0.04); }
+    .kw-entry.kw-rank-3 { border-color: rgba(205,127,50,0.3);  background: rgba(205,127,50,0.04); }
+
+    .kw-entry-top { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+    .kw-rank-badge {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; flex-shrink: 0;
+      background: var(--surface2); color: var(--muted);
+    }
+    .kw-rank-1 .kw-rank-badge { background: rgba(255,209,102,0.2); color: var(--gold);   font-size: 16px; }
+    .kw-rank-2 .kw-rank-badge { background: rgba(192,192,208,0.15);color: var(--silver); font-size: 16px; }
+    .kw-rank-3 .kw-rank-badge { background: rgba(205,127,50,0.15); color: var(--bronze); font-size: 16px; }
+
+    .kw-entry-name {
+      flex: 1; font-size: 15px; font-weight: 700;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .kw-entry-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .kw-entry-count { font-size: 17px; font-weight: 700; }
+    .kw-rank-1 .kw-entry-count { color: var(--gold); }
+    .kw-rank-2 .kw-entry-count { color: var(--silver); }
+    .kw-rank-3 .kw-entry-count { color: var(--bronze); }
+
+    .kw-pct-badge {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 7px; padding: 3px 9px;
+      font-size: 12px; font-weight: 700; color: var(--accent);
+    }
+    .kw-rank-1 .kw-pct-badge { color: var(--gold);   border-color: rgba(255,209,102,0.3); background: rgba(255,209,102,0.08); }
+    .kw-rank-2 .kw-pct-badge { color: var(--silver);  border-color: rgba(192,192,208,0.2); }
+    .kw-rank-3 .kw-pct-badge { color: var(--bronze);  border-color: rgba(205,127,50,0.2); }
+
+    .kw-global-bar { height: 5px; background: var(--bar-bg); border-radius: 99px; overflow: hidden; }
+    .kw-global-fill {
+      height: 100%; border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 0.8s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .kw-rank-1 .kw-global-fill { background: linear-gradient(90deg, #f7b731, var(--gold)); }
+    .kw-rank-2 .kw-global-fill { background: linear-gradient(90deg, #a0a0c0, var(--silver)); }
+    .kw-rank-3 .kw-global-fill { background: linear-gradient(90deg, #a0522d, var(--bronze)); }
+
+    .kw-hidden { display: none; }
+
     /* ── Footer ── */
-    .footer { text-align: center; padding: 32px 16px 0; font-size: 12px; color: var(--muted); }
+    .footer { text-align: center; padding: 28px 16px 0; font-size: 12px; color: var(--muted); }
 
     /* ── Loading ── */
     #loading { text-align: center; padding: 60px 20px; color: var(--muted); }
@@ -297,6 +303,7 @@
 <div id="loading">載入中...</div>
 
 <div id="content">
+  <!-- Stat cards -->
   <div class="stats-grid">
     <div class="stat-card full-width">
       <div class="stat-value" id="stat-total">—</div>
@@ -307,55 +314,72 @@
       <div class="stat-label">觸發人數</div>
     </div>
     <div class="stat-card">
-      <div class="stat-value small" id="stat-top-pct">—</div>
-      <div class="stat-label">冠軍佔比</div>
+      <div class="stat-value small" id="stat-kws">—</div>
+      <div class="stat-label">關鍵字種數</div>
     </div>
   </div>
 
-  <div class="section-title">排行榜 · 點開看關鍵字</div>
-  <div class="leaderboard" id="leaderboard"></div>
+  <!-- Tab bar -->
+  <div class="tab-bar">
+    <div class="tab-btn active" data-tab="users">👤 用戶排行</div>
+    <div class="tab-btn" data-tab="keywords">🔑 關鍵字排行</div>
+  </div>
+
+  <!-- Tab: Users -->
+  <div class="tab-panel active" id="tab-users">
+    <div class="section-title">用戶排行 · 點開看關鍵字</div>
+    <div class="leaderboard" id="leaderboard"></div>
+  </div>
+
+  <!-- Tab: Keywords -->
+  <div class="tab-panel" id="tab-keywords">
+    <div class="section-title">關鍵字排行</div>
+    <div class="search-wrap">
+      <input class="search-input" id="kw-search" type="search" placeholder="搜尋關鍵字…" autocomplete="off" />
+    </div>
+    <div class="kw-leaderboard" id="kw-leaderboard"></div>
+  </div>
+
   <div class="footer" id="footer"></div>
 </div>
 
 <script>
   const MEDAL = ['🥇','🥈','🥉'];
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  function esc(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
+  /* ── Tab switching ── */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
 
-  function buildEntry(entry, maxCount) {
+  /* ── User leaderboard ── */
+  function buildUserEntry(entry, maxCount) {
     const rank = entry.rank;
-    const rankClass = rank <= 3 ? `rank-${rank}` : '';
-    const rankDisplay = rank <= 3 ? MEDAL[rank-1] : rank;
-    const barWidth = (entry.count / maxCount * 100).toFixed(1);
-
-    // Aliases: show only names different from canonical
-    const otherAliases = entry.aliases.filter(a => a !== entry.username);
-    const aliasHtml = otherAliases.length
-      ? `<div class="aliases">${otherAliases.map(a => `<span class="alias-tag">${esc(a)}</span>`).join('')}</div>`
-      : '';
-
-    // Keywords panel
-    const maxKwCount = entry.keywords.length ? entry.keywords[0].count : 1;
-    // Show top 15 keywords
-    const topKws = entry.keywords.slice(0, 15);
-    const kwRowsHtml = topKws.map(({kw, count}) => {
-      const w = (count / maxKwCount * 100).toFixed(1);
-      return `
-        <div class="kw-row">
-          <span class="kw-name">${esc(kw)}</span>
-          <div class="kw-bar-track"><div class="kw-bar-fill" style="width:${w}%"></div></div>
-          <span class="kw-count">${count}</span>
-        </div>`;
-    }).join('');
+    const rc = rank <= 3 ? `rank-${rank}` : '';
+    const rd = rank <= 3 ? MEDAL[rank-1] : rank;
+    const bw = (entry.count / maxCount * 100).toFixed(1);
+    const others = entry.aliases.filter(a => a !== entry.username);
+    const aliasHtml = others.length
+      ? `<div class="aliases">${others.map(a=>`<span class="alias-tag">${esc(a)}</span>`).join('')}</div>` : '';
+    const maxKw = entry.keywords.length ? entry.keywords[0].count : 1;
+    const kwRows = entry.keywords.slice(0, 15).map(({kw,count}) =>
+      `<div class="kw-row">
+        <span class="kw-name">${esc(kw)}</span>
+        <div class="kw-bar-track"><div class="kw-bar-fill" style="width:${(count/maxKw*100).toFixed(1)}%"></div></div>
+        <span class="kw-count">${count}</span>
+      </div>`).join('');
 
     const el = document.createElement('div');
-    el.className = `entry ${rankClass}`;
+    el.className = `entry ${rc}`;
     el.innerHTML = `
       <div class="entry-summary">
         <div class="entry-top">
-          <div class="rank-badge">${rankDisplay}</div>
+          <div class="rank-badge">${rd}</div>
           <div class="entry-info">
             <div class="username">${esc(entry.username)}</div>
             ${aliasHtml}
@@ -370,52 +394,82 @@
           </div>
         </div>
         <div class="bar-track">
-          <div class="bar-fill" style="width:0%" data-width="${barWidth}%"></div>
+          <div class="bar-fill" style="width:0%" data-width="${bw}%"></div>
         </div>
       </div>
       <div class="keyword-panel">
         <div class="keyword-inner">
           <div class="kw-title">常用關鍵字（共 ${entry.keywords.length} 種）</div>
-          <div class="kw-list">${kwRowsHtml}</div>
+          <div class="kw-list">${kwRows}</div>
         </div>
-      </div>
-    `;
-
-    el.querySelector('.entry-summary').addEventListener('click', () => {
-      el.classList.toggle('open');
-    });
-
+      </div>`;
+    el.querySelector('.entry-summary').addEventListener('click', () => el.classList.toggle('open'));
     return el;
   }
 
+  /* ── Keyword leaderboard ── */
+  function buildKwEntry(entry, maxCount) {
+    const rank = entry.rank;
+    const rc = rank <= 3 ? `kw-rank-${rank}` : '';
+    const rd = rank <= 3 ? MEDAL[rank-1] : rank;
+    const bw = (entry.count / maxCount * 100).toFixed(1);
+    const el = document.createElement('div');
+    el.className = `kw-entry ${rc}`;
+    el.dataset.kw = entry.kw.toLowerCase();
+    el.innerHTML = `
+      <div class="kw-entry-top">
+        <div class="kw-rank-badge">${rd}</div>
+        <div class="kw-entry-name">${esc(entry.kw)}</div>
+        <div class="kw-entry-right">
+          <span class="kw-entry-count">${entry.count.toLocaleString()}</span>
+          <div class="kw-pct-badge">${entry.percentage}%</div>
+        </div>
+      </div>
+      <div class="kw-global-bar">
+        <div class="kw-global-fill" style="width:0%" data-width="${bw}%"></div>
+      </div>`;
+    return el;
+  }
+
+  /* ── Search ── */
+  document.getElementById('kw-search').addEventListener('input', function() {
+    const q = this.value.trim().toLowerCase().replace(/^\//, '');
+    document.querySelectorAll('.kw-entry').forEach(el => {
+      const kw = el.dataset.kw.replace(/^\//, '');
+      el.classList.toggle('kw-hidden', q && !kw.includes(q));
+    });
+  });
+
+  /* ── Load & render ── */
   async function load() {
     const res = await fetch('stats.json');
     const data = await res.json();
 
     document.getElementById('stat-total').textContent = data.total_triggers.toLocaleString();
     document.getElementById('stat-users').textContent = data.total_users;
-    document.getElementById('stat-top-pct').textContent = data.leaderboard[0].percentage + '%';
+    document.getElementById('stat-kws').textContent = data.keyword_leaderboard.length;
 
-    const maxCount = data.leaderboard[0].count;
+    // User leaderboard
+    const maxU = data.leaderboard[0].count;
     const lb = document.getElementById('leaderboard');
+    data.leaderboard.forEach(e => lb.appendChild(buildUserEntry(e, maxU)));
 
-    data.leaderboard.forEach(entry => {
-      lb.appendChild(buildEntry(entry, maxCount));
-    });
+    // Keyword leaderboard
+    const maxK = data.keyword_leaderboard[0].count;
+    const klb = document.getElementById('kw-leaderboard');
+    data.keyword_leaderboard.forEach(e => klb.appendChild(buildKwEntry(e, maxK)));
 
     document.getElementById('loading').style.display = 'none';
     document.getElementById('content').style.display = 'block';
 
-    // Animate bars after paint
+    // Animate all bars
     requestAnimationFrame(() => {
-      document.querySelectorAll('.bar-fill').forEach(bar => {
-        bar.style.width = bar.dataset.width;
+      document.querySelectorAll('[data-width]').forEach(el => {
+        el.style.width = el.dataset.width;
       });
     });
 
-    const updated = new Date().toLocaleDateString('zh-TW', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    });
+    const updated = new Date().toLocaleDateString('zh-TW', { year:'numeric', month:'long', day:'numeric' });
     document.getElementById('footer').textContent = `資料更新：${updated}`;
   }
 
